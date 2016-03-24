@@ -16,12 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    let options = [.MixWithOthers] as AVAudioSessionCategoryOptions
-    let category = AVAudioSessionCategoryPlayAndRecord
-    print(options, category)
-    try! AVAudioSession.sharedInstance().setCategory(category, withOptions: options)
-    try! AVAudioSession.sharedInstance().setActive(true)
-    
     return true
   }
 

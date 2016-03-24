@@ -10,15 +10,17 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
-  private let session = AVCaptureSession()
+  private var session: AVCaptureSession!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    let options = [.MixWithOthers] as AVAudioSessionCategoryOptions
-    let category = AVAudioSessionCategoryPlayAndRecord
-    print(options, category)
-    try! AVAudioSession.sharedInstance().setCategory(category, withOptions: options)
-    try! AVAudioSession.sharedInstance().setActive(true)
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    do {
+      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: [AVAudioSessionCategoryOptions.MixWithOthers, AVAudioSessionCategoryOptions.DefaultToSpeaker])
+      try AVAudioSession.sharedInstance().setActive(true)
+    } catch {
+      print("error")
+    }
+    
+    session = AVCaptureSession()
     
     session.beginConfiguration()
     
